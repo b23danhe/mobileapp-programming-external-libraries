@@ -24,11 +24,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ViewPump.init(ViewPump.builder()
                 .addInterceptor(new CalligraphyInterceptor(
                         new CalligraphyConfig.Builder()
-                                .setDefaultFontPath("crazy-horse.ttf")
+                                .setDefaultFontPath("hobby-horse.ttf")
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()))
                 .build());

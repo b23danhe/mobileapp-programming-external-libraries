@@ -10,13 +10,15 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@crazy-horse"
+        android:textColor="@color/colorFont"
         android:text="@string/text_view"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingPrefix"
+        fontPath="crazy-horse.ttf"/>
     
     <ImageView
         android:id="@+id/imageView"
