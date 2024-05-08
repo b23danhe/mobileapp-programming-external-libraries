@@ -1,42 +1,54 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+Jag började med att implementera Picasso som ett externt bibliotek. Detta bibliotek gör det möjligt att
+länka in externa bilder i ImageView. Genom att lägga in följande kod i build.gradle så fick jag tillgång
+till de funktioner som biblioteket erbjuder:
+```
+implementation 'com.squareup.picasso:picasso:2.71828'
+```
+Därefter skapades ett antal ImageViews i layouten som sedan deklareras som private fält i MainActivity
+```
+private ImageView queenHorseView, horseOneView, horseTwoView, horseThreeView, horseFourView;
+```
+För att länka in externa bilder i mina ImageView så används följande kod som hämtar hem bilden
+via .load() och sparar den lokalt innan den visas .into().
+```
+Picasso.get()
+       .load(url1)
+       .into(queenHorseView);
+```
+url har jag valt att lägga i en sträng för att få en "snyggare" kod.
+```
+String url1 = "https://m.media-amazon.com/images/I/71FQu2QB0eL._SL1060_.jpg";
+```
 
-_Du kan ta bort all text som finns sedan tidigare_.
-
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+För att experimentera ytterligare så sökte jag reda på ett externt bibliotek som gör det möjligt att
+ändra till en egenvald font. Genom att implementera Calligraphy 3 biblioteket kan jag nu ladda ner 
+valfri font, lägga det i en asset-folder och sen länka in vald font som default i appen och/eller
+ändra font i layout xml-filen. Följande lades till i build.gradle för att ladda hem biblioteket.
+```
+implementation 'io.github.inflationx:calligraphy3:3.1.1'
+implementation 'io.github.inflationx:viewpump:2.0.3'
+```
+Följande kod läggs i onCreate() för att sätta egen default-font i appen:
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
+ViewPump.init(ViewPump.builder()
+        .addInterceptor(new CalligraphyInterceptor(
+            new CalligraphyConfig.Builder()
+                .setDefaultFontPath("hobby-horse.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()))
+        .build());
+```
+
+Följande läggs innan onCreate:
+
+```
+protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
 }
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
-
-![](android.png)
-
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+![](screenshot.png)
