@@ -21,8 +21,8 @@
         fontPath="crazy-horse.ttf"/>
     
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        android:id="@+id/queen_horse"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/title"
@@ -32,26 +32,38 @@
     <ImageView
         android:id="@+id/horse_one"
         android:layout_width="0dp"
-        android:layout_height="300px"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/horse_two"
-        app:layout_constraintTop_toBottomOf="@id/imageView"/>
+        app:layout_constraintTop_toBottomOf="@id/queen_horse"/>
 
     <ImageView
         android:id="@+id/horse_two"
         android:layout_width="0dp"
-        android:layout_height="300px"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toEndOf="@id/horse_one"
         app:layout_constraintEnd_toStartOf="@id/horse_three"
-        app:layout_constraintTop_toBottomOf="@id/imageView"/>
+        app:layout_constraintTop_toBottomOf="@id/queen_horse"/>
 
     <ImageView
         android:id="@+id/horse_three"
         android:layout_width="0dp"
-        android:layout_height="300px"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toEndOf="@id/horse_two"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"/>
+        app:layout_constraintTop_toBottomOf="@id/queen_horse"/>
+
+    <ImageView
+        android:id="@+id/horse_four"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horse_three"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
