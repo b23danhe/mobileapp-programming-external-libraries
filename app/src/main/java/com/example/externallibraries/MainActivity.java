@@ -1,23 +1,38 @@
 package com.example.externallibraries;
 
-import static com.squareup.picasso.Picasso.*;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 public class MainActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
     private ImageView picassoView, horseOneView, horseTwoView, horseThreeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder()
+                                .setDefaultFontPath("crazy-horse.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
         setContentView(R.layout.activity_main);
-        setSingletonInstance(new Builder(this).build());
 
         picassoView = findViewById(R.id.imageView);
         horseOneView = findViewById(R.id.horse_one);
